@@ -6,7 +6,7 @@ Created by Larry Davis III
 """
 
 import csv
-import os
+
 
 class ReadCsv:
 
