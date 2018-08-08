@@ -18,12 +18,10 @@ class TrainNaiveBayes:
     def readcsv():
         sentencelist = [ReadCsv.readcsv
                         (
-                            r"C:\Users\elden\PycharmProjects\QuestionCreation\Question Creation "
-                            r"Documents\questiondata.csv")]
+                            r"C:\Users\elden\PycharmProjects\QuestionCreation-NaiveBayes\QuestionCreation-Naive_Bayes\Question Creation Documents\questiondata.csv")]
         questionlist = [ReadCsv.readcsv
                         (
-                            r"C:\Users\elden\PycharmProjects\QuestionCreation\Question Creation "
-                            r"Documents\questiondata.csv")]
+                            r"C:\Users\elden\PycharmProjects\QuestionCreation-NaiveBayes\QuestionCreation-Naive_Bayes\Question Creation Documents\questiondata.csv")]
         print(questionlist, sentencelist)
         return sentencelist, questionlist
 

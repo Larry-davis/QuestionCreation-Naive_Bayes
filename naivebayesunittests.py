@@ -13,6 +13,11 @@ class TestCsvReader(TestCase):
     def testSentenceList(self):
         self.assertIsNotNone(TrainNaiveBayes.readcsv())
 
+    def testParser(self):
+        pass
+
+    def test
+
 
 if __name__ == "__main__":
     TestCsvReader.testSentenceList()
