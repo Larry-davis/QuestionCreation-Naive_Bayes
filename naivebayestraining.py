@@ -8,7 +8,7 @@ Created by Larry Davis III
 from readcsv import ReadCsv
 from stanfordcorenlp import StanfordCoreNLP
 from utilities import load_configuration_data
-import numpy as np
+
 
 
 # dumping .csv file into lists
@@ -42,8 +42,6 @@ class TrainNaiveBayes:
         :return parsed_sentence_list: List of tuples that contain each word in a sentence and its part of speech
         :return parsed_question_list: List of tuples that contain each word in a question and its part of speech
         """
-        parsed_sentence_list = []
-        parsed_question_list = []
 
         module_settings = load_configuration_data(configpath)
 
@@ -51,6 +49,7 @@ class TrainNaiveBayes:
 
         parsed_sentence_list = [nlp.pos_tag(sentence) for sentence in list_of_sentences]
         parsed_question_list = [nlp.pos_tag(question) for question in list_of_questions]
+
         print(parsed_question_list, parsed_sentence_list)
         return parsed_sentence_list, parsed_question_list
 

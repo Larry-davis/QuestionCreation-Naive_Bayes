@@ -25,12 +25,14 @@ class ReadCsv:
 
             dialect = csv.Sniffer().sniff(csvfile.read(1024))
             csvfile.seek(0)
-            spamreader = csv.reader(csvfile, dialect)
-            for column in spamreader:
+            newreader = csv.reader(csvfile, dialect)
+
+            for column in newreader:
                 list1.append(column[0])
                 list2.append(column[1])
 
-        # print(list1, list2)
+        print(list1)
+        print(list2)
 
         return list1, list2
 
