@@ -5,10 +5,10 @@ Trains the Naive-Bayes algorithm on question creation. Uses sklearn version. Use
 Created by Larry Davis III
 """
 
-from readcsv import ReadCsv
+import csv
 from stanfordcorenlp import StanfordCoreNLP
 from utilities import load_configuration_data
-
+from sklearn.naive_bayes import GaussianNB
 
 
 # dumping .csv file into lists
@@ -25,11 +25,23 @@ class TrainNaiveBayes:
         :return sentence_list: list of sentences in the first column of the .csv file
         :return question_list: list of questions in the second column of the .csv file
         """
-        global sentence_list
-        global question_list
-        sentence_list, question_list = ReadCsv.readcsv(file)
-        # print(sentence_list)
-        return sentence_list, question_list
+
+        list1 = []
+        list2 = []
+
+        with open(file, 'r', newline='') as csvfile:
+            dialect = csv.Sniffer().sniff(csvfile.read(1024))
+            csvfile.seek(0)
+            newreader = csv.reader(csvfile, dialect)
+
+            for column in newreader:
+                list1.append(column[0])
+                list2.append(column[1])
+
+        print(list1)
+        print(list2)
+
+        return list1, list2
 
     @staticmethod
     def partsofspeech(list_of_sentences, list_of_questions, configpath):
@@ -53,8 +65,18 @@ class TrainNaiveBayes:
         print(parsed_question_list, parsed_sentence_list)
         return parsed_sentence_list, parsed_question_list
 
+    @staticmethod
+    def fit_and_predict(xlist, ylist):
+        """
+        fits and tests the Gaussian Naive-Bayes model
+        :param xlist: list of values to produce results for; sentences
+        :param ylist: list of expected results; questions
+        :return predicted question:
+        """
+
 
 if __name__ == "__main__":
-    TrainNaiveBayes.readcsv(r"C:\Users\elden\PycharmProjects\QuestionCreationNaiveBayes\QuestionCreation-Naive_Bayes\Question Creation Documents\questiondata.csv")
-    TrainNaiveBayes.partsofspeech(sentence_list, question_list, r"C:\Users\elden\PycharmProjects\sentence-classifier\config.json")
+    sentencelist, questionlist = TrainNaiveBayes.readcsv(
+        r"C:\Users\elden\PycharmProjects\QuestionCreationNaiveBayes\QuestionCreation-Naive_Bayes\Question Creation Documents\questiondata.csv")
+    TrainNaiveBayes.partsofspeech(sentencelist, questionlist, r"C:\Users\elden\PycharmProjects\sentence-classifier\config.json")
 
